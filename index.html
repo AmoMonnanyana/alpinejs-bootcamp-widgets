@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
+   
+    <title>Document</title>
+</head>
+<body>
+    <h1>Greetings</h1>
+    <script src="greet.js"></script>
+    <div x-data="{user: '', greetings:''}">
+     <input type="text" x-model="user" :placeholder="'Username'">
+     <button x-on:click="greetings=greet(user)"> greet</button> 
+     <div x-text="greetings"></div> 
+    </div>
+
+    <h1>Transport Fee</h1>
+    <script src="transportationFee.js"></script>
+    <div x-data="{shift: '', transport: ''}">
+        <input type="text" x-model="shift" :placeholder="'Shift'">
+        <button x-on:click="transport=transportFee(shift)">transportFare</button>
+    <div x-text="transport"></div>
+    </div>
+
+    <h1>Total Phone Bill</h1>
+    <script src="totalPhoneBill.js"></script>
+    <div x-data="{phoneLog: '', bill: ''}">
+    <input type="text" x-model="phoneLog" :placeholder="'Phone Log'">
+    <button x-on:click="bill=totalPhoneBill(phoneLog)">PhoneBill</button>
+    <div x-text="bill"></div>
+    </div>
+
+    <h1>Word Game</h1>
+    <script src="wordGame.js"></script>
+    <div x-data="{phrase: '', longWord: '', shortWord:'', wordLength:''}">
+    <input type="text" x-model="phrase" :placeholder="'Phrase'">  
+    <button x-on:click="longWord = longestWord(phrase); shortWord = shortestWord(phrase); wordLength = wordLengths(phrase)">play</button>
+    <div x-text="longWord"></div> <div x-text="shortWord"></div> <div x-text="wordLength"></div>
+    </div>
+
+    <h1>Enough Airtime</h1>
+    <script src="enoughAirtime.js"></script>
+    <div x-data="{airtime: '', usage: '', balance: ''}">
+    <input type="text" x-model="usage" :placeholder="'Phone Log'">
+    <input type="integer" x-model="airtime" :placeholder="'Airtime'">
+    <button x-on:click="balance = enoughAirtime(usage, airtime)"> Check Balance</button>
+    <div x-text="balance"></div>
+    </div>
+</body>
+</html>
