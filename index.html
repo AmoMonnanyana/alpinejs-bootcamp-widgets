@@ -4,49 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
-   
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Bootcamp Widgets</title>
 </head>
-<body>
-    <h1>Greetings</h1>
-    <script src="greet.js"></script>
-    <div x-data="{user: '', greetings:''}">
-     <input type="text" x-model="user" :placeholder="'Username'">
-     <button x-on:click="greetings=greet(user)"> greet</button> 
-     <div x-text="greetings"></div> 
-    </div>
+<body class="text-bg-light">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <h1 class="text-center">Bootcamp Function Widgets</h1>
+    <hr>
+    <div class="row">
+        <div class="container col-3 m-5 d-inline-block">
+        <h2>On this page</h2>
+        <hr>
+        <a href="#greeting" class="link-secondary"><h3>Greetings</h3></a>
+        <a href="#trans" class="link-secondary"><h3>Transport Fee</h3></a>
+        <a href="#bills" class="link-secondary"><h3>Total Phone Bill</h3></a>
+        <a href="#game" class="link-secondary"><h3>Word Game</h3></a>
+        <a href="#air" class="link-secondary"><h3>Enough Airtime</h3></a>
+        </div>
+    
 
-    <h1>Transport Fee</h1>
-    <script src="transportationFee.js"></script>
-    <div x-data="{shift: '', transport: ''}">
-        <input type="text" x-model="shift" :placeholder="'Shift'">
-        <button x-on:click="transport=transportFee(shift)">transportFare</button>
-    <div x-text="transport"></div>
-    </div>
+        <div class="container col-7 m-5 d-inline-block" x-data="{
+        user: '',
+        greetings: '',
+        shift: '', 
+        transport: '',
+        phoneLog: '',
+        bill: '',
+        phrase: '', 
+        longWord: '', 
+        shortWord:'', 
+        wordLength:'',
+        airtime: '', 
+        usage: '', 
+        balance: '',
+        }"
+        >
+        <div class="p-3 start-0">
+        <h2 id="greeting">Greetings</h2>
+        <h3>Enter user's name to greet.</h3>
+        <script src="greet.js"></script>
+        <div class="input-group mb-3">
+        <input type="text" x-model="user" :placeholder="'Username'" class="form-control">
+        <button id="button-addon1" class="btn btn-success btn-lg" x-on:click="greetings=greet(user); setTimeout(function() {
+            greetings= '';
+            user= '';
+            console.log('clear')
+        }, 5000)">Greet</button> </div>
+        <input type="text" x-model="greetings" class="form-control">
+         
+        <div class="p-3 start-0">
+        <h2 id="trans">Transport Fee</h2>
+        <h3>Enter the desired shift to display the required transport fare.</h3>
+        <script src="transportationFee.js"></script>
+        <div class="input-group mb-3">
+            <input type="text" x-model="shift" :placeholder="'Shift'" class="form-control">
+            <button id="button-addon1" class="btn btn-success btn-lg" x-on:click="transport=transportFee(shift); setTimeout(function() {
+                shift= '';
+                transport= '';
+                console.log('clear')
+            }, 5000)">Transport Fare</button></div>
+        <input type="text" x-model="transport" class="form-control">   
+        
 
-    <h1>Total Phone Bill</h1>
-    <script src="totalPhoneBill.js"></script>
-    <div x-data="{phoneLog: '', bill: ''}">
-    <input type="text" x-model="phoneLog" :placeholder="'Phone Log'">
-    <button x-on:click="bill=totalPhoneBill(phoneLog)">PhoneBill</button>
-    <div x-text="bill"></div>
-    </div>
+        <div class="p-3">
+        <h2 id="bills">Total Phone Bill</h2>
+        <h3>Enter your phone log to calculate the total phone bill.</h3>
+        <script src="totalPhoneBill.js"></script>
+        <div class="input-group mb-3">
+        <input type="text" x-model="phoneLog" :placeholder="'Phone Log'" class="form-control" >
+        <button class="btn btn-success btn-lg" id="button-addon1" x-on:click="bill=totalPhoneBill(phoneLog); setTimeout(function() {
+            phoneLog= '';
+            bill= '';
+            console.log('clear')
+        }, 5000)">PhoneBill</button></div>
+        <input type="text" x-model="bill" class="form-control">
+        
+        
 
-    <h1>Word Game</h1>
-    <script src="wordGame.js"></script>
-    <div x-data="{phrase: '', longWord: '', shortWord:'', wordLength:''}">
-    <input type="text" x-model="phrase" :placeholder="'Phrase'">  
-    <button x-on:click="longWord = longestWord(phrase); shortWord = shortestWord(phrase); wordLength = wordLengths(phrase)">play</button>
-    <div x-text="longWord"></div> <div x-text="shortWord"></div> <div x-text="wordLength"></div>
+        <div class="p-3">
+        <h2 id="game">Word Game</h2>
+        <h3>Enter any phrase of choice to get the longest word, shortest word, and the total wordlength. </h3>
+        <script src="wordGame.js"></script>
+        <div class="input-group mb-3">
+        <input type="text" x-model="phrase" :placeholder="'Phrase'" class="form-control">  
+        <button class="btn btn-success btn-lg" id="button-addon1" x-on:click="longWord = longestWord(phrase); shortWord = shortestWord(phrase); wordLength = wordLengths(phrase); setTimeout(function() {
+            phrase= '';
+            longWord = '';
+            shortWord = '';
+            wordLength = '';
+            console.log('clear')
+        }, 5000)">Play</button></div>
+        
+        <div class="input-group mb-3">
+             <span class="input-group-text">Longest Word</span><input type="text" x-model="longWord" class="form-control"></div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Shortest word</span><input type="text" x-model="shortWord" class="form-control"></div>
+        </div>
+        <div class="input-group mb-3">
+        <span class="input-group-text">Total Word length</span><input type="text" x-model="wordLength" class="form-control"></div>
+        </div>
+        
+        <div class="p-3">
+        <h2 id="air">Enough Airtime</h2>
+        <h3>Check if your airtime balance is enough for the projected usage. </h3>
+        <script src="enoughAirtime.js"></script>
+        <div class="input-group mb-3">
+        <input type="text" x-model="usage" :placeholder="'Phone Log'" class="form-control">
+        <input type="integer" x-model="airtime" class="form-control" :placeholder="'Airtime'"> <span class="input-group-text">.00</span>
+        <button id="button-addon1" class="btn btn-success btn-lg" x-on:click="balance = enoughAirtime(usage, airtime); setTimeout(function() {
+            usage= '';
+            airtime = '';
+            balance= '';
+            console.log('clear')
+        }, 5000)"> Check Balance</button>
+        </div>
+        <input type="text" x-model="balance" class="form-control">
+        
+        </div>
     </div>
+<hr>
 
-    <h1>Enough Airtime</h1>
-    <script src="enoughAirtime.js"></script>
-    <div x-data="{airtime: '', usage: '', balance: ''}">
-    <input type="text" x-model="usage" :placeholder="'Phone Log'">
-    <input type="integer" x-model="airtime" :placeholder="'Airtime'">
-    <button x-on:click="balance = enoughAirtime(usage, airtime)"> Check Balance</button>
-    <div x-text="balance"></div>
-    </div>
 </body>
 </html>
