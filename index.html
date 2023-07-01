@@ -10,21 +10,10 @@
 <body class="text-bg-light">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-    <h1 class="text-center">Bootcamp Function Widgets</h1>
-    <hr>
-    <div class="row">
-        <div class="container col-3 m-5 d-inline-block">
-        <h2>On this page</h2>
-        <hr>
-        <a href="#greeting" class="link-secondary"><h3>Greetings</h3></a>
-        <a href="#trans" class="link-secondary"><h3>Transport Fee</h3></a>
-        <a href="#bills" class="link-secondary"><h3>Total Phone Bill</h3></a>
-        <a href="#game" class="link-secondary"><h3>Word Game</h3></a>
-        <a href="#air" class="link-secondary"><h3>Enough Airtime</h3></a>
-        </div>
+    <h1 class="m-5 p-3">Bootcamp Function Widgets</h1>
     
-
-        <div class="container col-7 m-5 d-inline-block" x-data="{
+    
+        <div class="container m-5 d-inline-block" x-data="{
         user: '',
         greetings: '',
         shift: '', 
@@ -40,32 +29,76 @@
         balance: '',
         }"
         >
+        <hr>
         <div class="p-3 start-0">
         <h2 id="greeting">Greetings</h2>
         <h3>Enter user's name to greet.</h3>
         <script src="greet.js"></script>
+        
+            <div x-model></div>
         <div class="input-group mb-3">
-        <input type="text" x-model="user" :placeholder="'Username'" class="form-control">
-        <button id="button-addon1" class="btn btn-success btn-lg" x-on:click="greetings=greet(user); setTimeout(function() {
-            greetings= '';
-            user= '';
-            console.log('clear')
-        }, 5000)">Greet</button> </div>
-        <input type="text" x-model="greetings" class="form-control">
+            <input type="text" class="form-control"  x-model="user" :placeholder="'Username'" aria-label="Text input with dropdown button">
+            <button id="button-addon1" class="btn btn-success btn-lg" x-on:click="greetings=greet(user)">Greet</button>
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select language</button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button class="dropdown-item" x-on:click="greetings= 'Molo, ' + user; setTimeout(function() {
+                greetings= '';
+                user= '';
+                console.log('clear')
+            }, 5000)">Xhosa</button></li>
+              <li><button class="dropdown-item" x-on:click="greetings = 'Dumela, ' + user; setTimeout(function() {
+                greetings= '';
+                user= '';
+                console.log('clear')
+            }, 5000)">Setswana</button></li>
+              <li><button class="dropdown-item" x-on:click="greetings = 'Sawubona, ' + user; setTimeout(function() {
+                greetings= '';
+                user= '';
+                console.log('clear')
+            }, 5000)">Zulu</button></li>
+              <li><button class="dropdown-item" x-on:click="greetings = 'Hallo, ' + user; setTimeout(function() {
+                greetings= '';
+                user= '';
+                console.log('clear')
+            }, 5000)">Afrikaans</button></li>
+            </ul> 
+          </div>
+        
+        <input type="text" x-model="greetings" class="form-control border-dark">
+        </div>
          
         <div class="p-3 start-0">
         <h2 id="trans">Transport Fee</h2>
         <h3>Enter the desired shift to display the required transport fare.</h3>
         <script src="transportationFee.js"></script>
-        <div class="input-group mb-3">
-            <input type="text" x-model="shift" :placeholder="'Shift'" class="form-control">
-            <button id="button-addon1" class="btn btn-success btn-lg" x-on:click="transport=transportFee(shift); setTimeout(function() {
+        <div class="form-check">
+            <input type="radio" name="shifts" class="form-check-input" id="morning" x-on:click="transport=transportFee('morning'); setTimeout(function() {
                 shift= '';
                 transport= '';
                 console.log('clear')
-            }, 5000)">Transport Fare</button></div>
-        <input type="text" x-model="transport" class="form-control">   
-        
+            }, 5000)">
+            <label class="form-check-label" for="morning">Morning</label>
+        </div>
+
+        <div class="form-check">
+            <input type="radio" name= "shifts" class="form-check-input" id="afternoon" x-on:click="transport=transportFee('afternoon'); setTimeout(function() {
+                shift= '';
+                transport= '';
+                console.log('clear')
+            }, 5000)">
+            <label class="form-check-label" for="afternoon">Afternoon</label>
+        </div>
+
+        <div class="form-check">
+            <input type="radio" name= "shifts" class="form-check-input" id="other" x-on:click="transport=transportFee('other'); setTimeout(function() {
+                shift= '';
+                transport= '';
+                console.log('clear')
+            }, 5000)">
+            <label class="form-check-label" for="other">Other</label>
+        </div>
+        <input type="text" x-model="transport" class="form-control border-dark"> 
+        </div> 
 
         <div class="p-3">
         <h2 id="bills">Total Phone Bill</h2>
@@ -78,9 +111,8 @@
             bill= '';
             console.log('clear')
         }, 5000)">PhoneBill</button></div>
-        <input type="text" x-model="bill" class="form-control">
-        
-        
+        <input type="text" x-model="bill" class="form-control border-dark">
+        </div>
 
         <div class="p-3">
         <h2 id="game">Word Game</h2>
@@ -97,13 +129,14 @@
         }, 5000)">Play</button></div>
         
         <div class="input-group mb-3">
-             <span class="input-group-text">Longest Word</span><input type="text" x-model="longWord" class="form-control"></div>
+             <span class="input-group-text">Longest Word</span><input type="text" x-model="longWord" class="form-control border-dark">
         </div>
         <div class="input-group mb-3">
-            <span class="input-group-text">Shortest word</span><input type="text" x-model="shortWord" class="form-control"></div>
+            <span class="input-group-text">Shortest word</span><input type="text" x-model="shortWord" class="form-control border-dark">
         </div>
         <div class="input-group mb-3">
-        <span class="input-group-text">Total Word length</span><input type="text" x-model="wordLength" class="form-control"></div>
+        <span class="input-group-text">Total Word length</span><input type="text" x-model="wordLength" class="form-control border-dark">
+        </div>
         </div>
         
         <div class="p-3">
@@ -120,11 +153,11 @@
             console.log('clear')
         }, 5000)"> Check Balance</button>
         </div>
-        <input type="text" x-model="balance" class="form-control">
-        
+        <input type="text" x-model="balance" class="form-control border-dark">
         </div>
-    </div>
+
 <hr>
+</div>
 
 </body>
 </html>
